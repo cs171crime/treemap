@@ -69,22 +69,30 @@ Treemap.prototype.updateVis = function(){
         .enter()
         .append('rect')
         .attr("fill", function(d) {
-            if (d.data.id === "weed")
-            {
+            if (d.data.id === "weed") {
                 vis.weed = parseInt(d.data.data["size"])
                 return "green"
             }
-            else if (d.data.id === "heroin")
-            {
+            else if (d.data.id === "heroin") {
                 vis.heroin = parseInt(d.data.data["size"])
                 return "blue"
             }
-            else if (d.data.id === "needle")
-            {
+            else if (d.data.id === "needle") {
                 vis.needle = parseInt(d.data.data["size"])
                 return "purple"
             }
-
+        })
+        // changes clockvisualization
+        .on("click", function(d) {
+            if (d.data.id === "weed") {
+                updateVisualization("WeedCrimes");
+            }
+            else if (d.data.id === "heroin") {
+                updateVisualization("HeroinCrimes");
+            }
+            else if (d.data.id === "needle") {
+                updateVisualization("NumNeedles");
+            }
         });
 
     vis.svg.append("text")
@@ -103,10 +111,10 @@ Treemap.prototype.updateVis = function(){
         .attr("x", -40)
         .attr("y", 0)
 
-    vis.svg.append("text")
+   /* vis.svg.append("text")
         .text("Needles: "+vis.needle)
         .attr("x", -40)
-        .attr("y", 20)
+        .attr("y", 20)*/
 
     // Draw on screen
     vis.Slices.attr('x', function (d) { return d.x0; })
