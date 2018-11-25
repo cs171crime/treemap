@@ -79,6 +79,11 @@ Treemap.prototype.updateVis = function(){
                 vis.heroin = parseInt(d.data.data["size"])
                 return "blue"
             }
+            else if (d.data.id === "needle")
+            {
+                vis.needle = parseInt(d.data.data["size"])
+                return "purple"
+            }
 
         });
 
@@ -98,9 +103,14 @@ Treemap.prototype.updateVis = function(){
         .attr("x", -40)
         .attr("y", 0)
 
+    vis.svg.append("text")
+        .text("Needles: "+vis.needle)
+        .attr("x", -40)
+        .attr("y", 20)
+
     // Draw on screen
     vis.Slices.attr('x', function (d) { return d.x0; })
-        .attr('y', function (d) { return d.y0 + 25; })
+        .attr('y', function (d) { return d.y0 + 35; })
         .attr('width', function (d) { return d.x1 - d.x0; })
         .attr('height', function (d) { return d.y1 - d.y0; });
 	
